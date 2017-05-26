@@ -6,7 +6,7 @@ A spatial hash is a data structure which subdivides space into buckets of grid s
 
 ## How to use
 
-Creating a SpatialHash instance works as follows. The constructor expects two parameters. The first parameter, cellSize, is the size of a grid cell given as the n-th power of two, which means if you want a cell with the size 64 (64x64 units) than the value of cellSize is 6, as 2^6=64. The second parameter, deleteEmptyBuckets, is optional (default=true). So by default, empty buckets will be deleted when they don't contain objects any more.
+Creating a SpatialHash instance works as follows. The constructor expects two parameters. The first parameter, cellSize, is the size of a grid cell given as the n-th power of two, which means if you want a cell with the size 64 (64x64 units), then the value of cellSize is 6, as 2^6=64. The second parameter, deleteEmptyBuckets, is optional (default=true). So by default, empty buckets will be deleted when they don't contain objects any more.
 <pre>
 const cellSizeNthPowerOfTwo = 6;
 const deleteEmptyBuckets = false;
