@@ -3,12 +3,11 @@
 class SpatialHash {
 
   /**
-   * Adds two numbers
-   * @param {Number} cellSize - The cell size as the n-th power of 2
-   * @param {Boolean} deleteEmptyBuckets - Optional, delete buckets that don't contain objects
+   * @param {Number} cellSize - The cell size as the n-th power of two
+   * @param {Boolean} deleteEmptyBuckets - Optional, delete buckets that don't contain objects any more
    */
   constructor(cellSize, deleteEmptyBuckets=true) {
-    this.cellSize = cellSize;
+    this.cellSize = Math.trunc(Math.max(0, cellSize));
     this.map = new Map();
     this.objects = [];
     this.tmpKeys = [];
