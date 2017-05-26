@@ -23,7 +23,7 @@ grid.insert({
 });
 </pre>
 
-Retrieving potential candidates from the SpatialHash.
+Retrieving potential candidates from the SpatialHash. Please note, that you might get duplicate candidates as a result since objects can be inserted into more than one bucket depending on their position and size.
 <pre>
 let candidates = [];
 let rect = { x: 16, y: 16, width: 96, height: 96 };
