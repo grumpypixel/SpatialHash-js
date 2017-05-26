@@ -2,6 +2,11 @@
 
 class SpatialHash {
 
+  /**
+   * Adds two numbers
+   * @param {Number} cellSize - The cell size as the n-th power of 2
+   * @param {Boolean} deleteEmptyBuckets - Optional, delete buckets that don't contain objects
+   */
   constructor(cellSize, deleteEmptyBuckets=true) {
     this.cellSize = cellSize;
     this.map = new Map();
@@ -28,7 +33,8 @@ class SpatialHash {
       const key = this.tmpKeys[i];
       let list = this.map.get(key);
       if (list !== undefined) {
-        for (let n = 0; n < list.length; ++n) {
+        const count = list.length;
+        for (let n = 0; n < count; ++n) {
           outCandidates.push(list[n]);
         }
       }
@@ -46,7 +52,7 @@ class SpatialHash {
   drawBuckets(context, color, canvasOriginOffset, canvasHeight) {
     let buckets = [];
     this.map.forEach(function(value, key, map) {
-      const values = key.split(",");
+      const values = key.split(this.delimiter);
       const x = parseInt(values[0]);
       const y = parseInt(values[1]);
       buckets.push({ x: x, y: y });
@@ -66,9 +72,7 @@ class SpatialHash {
       const obj = this.objects[i];
       const x = obj.x + canvasOriginOffset.x;
       const y = canvasHeight - (obj.y + canvasOriginOffset.y);
-      const halfWidth = obj.width * 0.5;
-      const halfHeight = obj.height * 0.5;
-      this.__drawRect(context, x - halfWidth, y - halfHeight, obj.width, obj.height, color);
+      this.__drawRect(context, x - obj.width * 0.5, y - obj.height * 0.5, obj.width, obj.height, color);
     }
   }
 
@@ -109,7 +113,6 @@ class SpatialHash {
     const x1 = Math.trunc(obj.x + halfWidth) >> this.cellSize;
     const y0 = Math.trunc(obj.y - halfHeight) >> this.cellSize;
     const y1 = Math.trunc(obj.y + halfHeight) >> this.cellSize;
-    // console.log({x0:x0, x1:x1, y0:y0, y1:y1});
     for (let yi = y0; yi <= y1; ++yi) {
       for (let xi = x0; xi <= x1; ++xi) {
         outKeys.push('' + xi + this.delimiter + yi);
