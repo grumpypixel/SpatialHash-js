@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <script type="text/javascript" src="3rdparty/dat.gui.min.js"></script>
+  <script type="text/javascript" src="../src/spatialhash.js"></script>
+  <script type="text/javascript" src="common/canvas-renderer.js"></script>
+  <script type="text/javascript" src="common/random.js"></script>
+  <script type="text/javascript" src="common/time.js"></script>
+  <script type="text/javascript" src="common/vector2.js"></script>
+</head>
+
+<body>
+  <script type="text/javascript" src="src/demo.js"></script>
+
+  <div align="center">
+    <h1>Spatial Hash Demo</h1>
+    <canvas id="canvas" width="768" height="768"></canvas>
+    <hr />
+    <p>
+      Source: <a href="https://github.com/grumpypixel/spatialhash-js" target="_blank">github.com/grumpypixel/spatialhash-js</a>
+      &nbsp;|&nbsp;
+      GUI: <a href="http://workshop.chromeexperiments.com/examples/gui/" target="_blank">dat.GUI</a>
+      <span id="heart" style="color: #fff;">&nbsp;&hearts;</span>
+    </p>
+  </div>
+
+  <script type="text/javascript">
+  const cycleTimer = new Time();
+  cycleTimer.start();
+
+  cycleColor = 0;
+  cycleSpeed = 10;
+  updateColor();
+
+  function updateColor() {
+    cycleTimer.update();
+    const item = document.getElementById('heart');
+    if (item) {
+      item.style.color = 'hsl(' + cycleColor + ', 100%, 60%)';
+    }
+    cycleColor += cycleSpeed * cycleTimer.deltaTime;
+    window.requestAnimationFrame(updateColor);
+  }
+  </script>
+
+</body>
+</html>
