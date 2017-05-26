@@ -1,0 +1,1 @@
+# SpatialHash-js
