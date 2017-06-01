@@ -50,8 +50,9 @@ class SpatialHash {
 
   drawBuckets(context, color, canvasOriginOffset, canvasHeight) {
     let buckets = [];
+    const delimiter = this.delimiter;
     this.map.forEach(function(value, key, map) {
-      const values = key.split(this.delimiter);
+      const values = key.split(delimiter);
       const x = parseInt(values[0]);
       const y = parseInt(values[1]);
       buckets.push({ x: x, y: y });
